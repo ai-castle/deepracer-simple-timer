@@ -1,1 +1,1 @@
-# DeepRacer Vision Timer (Simple version)
+# DeepRacer Simple Timer
