@@ -650,6 +650,7 @@ remainingTimePausePlayBtn.addEventListener('click', function () {
 let remainingRefreshBtn = document.getElementById('remainingRefreshButton')
 remainingRefreshBtn.addEventListener('click', function(){
   remainingTime = initialRemainingTime *60 * 1000;
+  localStorage.setItem('remainingTime', JSON.stringify(remainingTime));
   remainingRefreshBtn.blur(); // 포커스 제거
 })
 
