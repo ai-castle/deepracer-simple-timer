@@ -539,3 +539,18 @@ main {
     display:flex;
     align-items: center;
 }
+
+.floating-bar {
+    position: absolute;  
+    bottom: 0;
+    /* width: 100%; */
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+    font-size: 1vw;
+  }
+  .floating-bar span{
+    margin: 0 10px;
+    display: inline-block;
+  } 

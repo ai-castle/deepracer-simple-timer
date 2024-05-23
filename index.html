@@ -4,7 +4,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="AWS DeepRacer Simple Timer. Team-based performance tracking and camera-based start line crossing recognition Timer. 딥레이서 비전 타이머. 팀별 기록 측정 및 카메라 기반의 스타트 라인 통과 인식 타이머.">
+  <meta name="description"
+    content="AWS DeepRacer Simple Timer. Team-based performance tracking and camera-based start line crossing recognition Timer. 딥레이서 비전 타이머. 팀별 기록 측정 및 카메라 기반의 스타트 라인 통과 인식 타이머.">
   <meta content="AWS, DeepRacer, Simple, Timer" name="keywords">
   <meta property="og:title" content="AWS DeepRacer Simple Timer - Simple">
   <meta property="og:description" content="AWS DeepRacer Simple Timer">
@@ -129,14 +130,13 @@
           <li>Initial Remaining Time : <span></span> min </li>
           <li>offtrack penalty : <span></span> sec </li>
           <li>total labs : <span></span> </li>
-          <li>Webcam : <span></span> </li>
           <li>Auto-Start Next Lap : <span></span> </li>
-          <li>Start Line Detection : <span></span> </li>
+          <!-- <li>Start Line Detection : <span></span> </li> -->
         </ul>
 
         <!-- Modal -->
         <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <!-- <div class="modal fade show" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="" style="display:block;"> -->
+          <!-- <div class="modal fade show" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="" style="display:block;"> -->
           <div class="modal-dialog">
             <div class="modal-content">
               <div class="modal-header">
@@ -171,44 +171,45 @@
                     <div style="text-align:center;">
                       <h1 style="font-weight:900;">DeepRacer Simple Timer</h1>
                       <br>
-                      <button type="button disabled" class="btn btn-warning" style="font-weight:700;">
+                      <!-- <button type="button disabled" class="btn btn-warning" style="font-weight:700;">
                         Go to Tutorial (Youtube)
-                      </button>
+                      </button> -->
                     </div>
                     <hr>
                     <div style="text-align:center;">
-                      <img src="ai-castle-logo.jpg" width="60%" > 
+                      <img src="ai-castle-logo.jpg" width="60%">
                     </div>
                     <br>
                     <div>
-                      <ul style="line-height:150%"> 
+                      <ul style="line-height:150%">
                         <li>Copyright (C) AI Castle Co., Ltd. (주) 에이아이캐슬</li>
-                        <li>Github : <a href="https://github.com/ai-castle/deepracer-simple-timer" target="_blank">ai-castle/deepracer-simple-timer</a></li>
+                        <li>Github : <a href="https://github.com/ai-castle/deepracer-simple-timer"
+                            target="_blank">ai-castle/deepracer-simple-timer</a></li>
                         <li>
-                          contact 
+                          contact
                           <ul>
                             <li>
                               <a href="mailto:dev@ai-castle.com">dev@ai-castle.com</a>
                             </li>
                             <li>
-                              <a href="https://ai-castle.com" target="_blank">https://ai-castle.com</a> 
+                              <a href="https://ai-castle.com" target="_blank">https://ai-castle.com</a>
                             </li>
                           </ul>
                         </li>
                       </ul>
 
-                    </div> 
+                    </div>
                     <hr>
-                    
-                    
-                      <h6 style="font-weight:800;"> 
-                        <i class="bi bi-box-arrow-up-right"></i> 
-                        <a href="https://github.com/ai-castle/deepracer-vision-timer"> 
-                          DeepRacer Vision Timer</a>
-                      </h6>
-                      
-                    
-                 
+
+
+                    <h6 style="font-weight:800;">
+                      <i class="bi bi-box-arrow-up-right"></i>
+                      <a href="https://github.com/ai-castle/deepracer-vision-timer">
+                        DeepRacer Vision Timer</a>
+                    </h6>
+
+
+
 
                   </div>
                   <div class="tab-pane fade show" id="pills-setting" role="tabpanel" aria-labelledby="pills-setting-tab"
@@ -239,20 +240,19 @@
                       </select>
                       lab
                     </div>
-                    <div>
+                    <!-- <div>
                       <label for="cameraList">webcam :</label>
                       <select id="cameraList">
                       </select>
-                    </div>
-                    <div>
+                    </div> -->
+                    <!-- <div>
                       <label for="resolutionList">webcam resolution :</label>
                       <select id="resolutionList">
                         <option value="640x480">640x480</option>
                         <option value="1280x720">1280x720</option>
                         <option value="1920x1080">1920x1080</option>
-                        <!-- 기타 해상도 옵션 -->
                       </select>
-                    </div>
+                    </div> -->
                     <div>
                       <label for="auto-start-next-lap">Auto-Start Next Lap :</label>
                       <select id="auto-start-next-lap">
@@ -260,13 +260,13 @@
                         <option value="off">off</option>
                       </select>
                     </div>
-                    <div>
+                    <!-- <div>
                       <label for="start-line-detection">Start Line Detection :</label>
                       <select id="start-line-detection">
                         <option value="on">on</option>
                         <option value="off">off</option>
                       </select>
-                    </div>
+                    </div> -->
                     <div>
                       <label for="minimum-complete-interval">Minimum Complete Interval :</label>
                       <select id="minimum-complete-interval">
@@ -289,7 +289,7 @@
                     tabindex="0">
                     <div>
                       Reset all data
-                    </div> 
+                    </div>
                     <div>
                       <button type="button" class="btn btn-danger" id="reset-data-btn">Reset Now</button>
                     </div>
@@ -315,8 +315,7 @@
     <main>
       <div class="main-pannel">
         <div class="main-nav">
-          <div class="main-nav-view-selection">
-
+          <!-- <div class="main-nav-view-selection">
             <div>
               <label for="view-timer">Timer &nbsp;</label>
               <input type="radio" id="view-timer" name="viewOption" value="timer" checked />
@@ -325,7 +324,7 @@
               <label for="view-webcam">Webcam &nbsp;</label>
               <input type="radio" id="view-webcam" name="viewOption" value="webcam" />
             </div>
-          </div>
+          </div> -->
           <div class="main-nav-time" id="current-time-value">
           </div>
         </div>
@@ -367,6 +366,10 @@
                 </button>
               </div>
             </div>
+            <div class="floating-bar">
+              <span><b>DeepRacer Simple Timer</b> (github.com/ai-castle/deepracer-simple-timer)</span> |
+              <span>© <b>AI CASTLE</b> (aicastle.io) All rights reserved.</span>
+            </div>
           </div>
 
           <div class="webcam-window" style="display:none;">
@@ -380,9 +383,9 @@
 
           </div>
 
-          <!-- <div class="logs-window" style="display:none;"> </div> -->
 
         </div>
+
       </div>
       <div class="main-logs">
         <div class="logs-title">
@@ -401,11 +404,12 @@
         </div>
 
       </div>
-
+      </main>
   </div>
-  </main>
 
-  </div>
+
+
+
 
   <!-- javascript -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -413,7 +417,7 @@
     integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
     crossorigin="anonymous"></script>
   <script src="index.js"></script>
-  <script src="webcam.js"></script>
+  <!-- <script src="webcam.js"></script> -->
 
 </body>
 

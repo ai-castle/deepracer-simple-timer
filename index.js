@@ -53,7 +53,7 @@ let initialRemainingTime = JSON.parse(localStorage.getItem("initialRemainingTime
 let offtrackPenalty = JSON.parse(localStorage.getItem("offtrackPenalty") || 2);
 let totalLabs = JSON.parse(localStorage.getItem("totalLabs")) || 1;
 let autoStartNextLap = localStorage.getItem("autoStartNextLap") || 'on';
-let startLineDetection = localStorage.getItem("startLineDetection") || 'off';
+// let startLineDetection = localStorage.getItem("startLineDetection") || 'off';
 let minimumCompleteInterval = JSON.parse(localStorage.getItem("minimumCompleteInterval")) || 3;
 
 function displayAndSaveSettings() {
@@ -63,13 +63,11 @@ function displayAndSaveSettings() {
   localStorage.setItem("offtrackPenalty", JSON.stringify(offtrackPenalty));
   document.querySelector('#setting-list li:nth-child(3) span').textContent = totalLabs;
   localStorage.setItem("totalLabs", JSON.stringify(totalLabs));
-  // document.querySelector('#setting-list li:nth-child(4) span').textContent = ;
-  // 
-  document.querySelector('#setting-list li:nth-child(5) span').textContent = autoStartNextLap;
-  localStorage.setItem("autoStartNextLap", autoStartNextLap);
-  document.querySelector('#setting-list li:nth-child(6) span').textContent = startLineDetection;
-  localStorage.setItem("startLineDetection", startLineDetection);
-  // document.querySelector('#setting-list li:nth-child(7) span').textContent = minimumCompleteInterval;
+  document.querySelector('#setting-list li:nth-child(4) span').textContent = autoStartNextLap;
+  localStorage.setItem("autoStartNextLap", autoStartNextLap); 
+  // document.querySelector('#setting-list li:nth-child(5) span').textContent = startLineDetection;
+  // localStorage.setItem("startLineDetection", startLineDetection);
+  // document.querySelector('#setting-list li:nth-child(6) span').textContent = minimumCompleteInterval;
   localStorage.setItem("minimumCompleteInterval", JSON.stringify(minimumCompleteInterval));
 }
 
@@ -96,24 +94,10 @@ totalLabsElement.addEventListener('change', (e) => {
   displayAndSaveSettings();
 });
 
-// let cameraListElement = document.getElementById('cameraList');
-// cameraListElement.value = ??
-// cameraListElement.addEventListener('change', (e) => {
-//   webCamSelected = parseInt(e.target.value);
-//   displayAndSaveSettings();
-// });
-
 let autoStartNextLapElement = document.getElementById('auto-start-next-lap')
 autoStartNextLapElement.value = autoStartNextLap
 autoStartNextLapElement.addEventListener('change', (e) => {
   autoStartNextLap = e.target.value;
-  displayAndSaveSettings();
-});
-
-let startLineDetectionElement = document.getElementById('start-line-detection');
-startLineDetectionElement.value = startLineDetection;
-startLineDetectionElement.addEventListener('change', (e) => {
-  startLineDetection = e.target.value;
   displayAndSaveSettings();
 });
 
@@ -124,8 +108,27 @@ minimumCompleteIntervalElement.addEventListener('change', (e) => {
   displayAndSaveSettings();
 });
 
-// 첫 화면에 세팅 띄우기
+// let cameraListElement = document.getElementById('cameraList');
+// cameraListElement.value = ??
+// cameraListElement.addEventListener('change', (e) => {
+//   webCamSelected = parseInt(e.target.value);
+//   displayAndSaveSettings();
+// });
+
+// let startLineDetectionElement = document.getElementById('start-line-detection');
+// startLineDetectionElement.value = startLineDetection;
+// startLineDetectionElement.addEventListener('change', (e) => {
+//   startLineDetection = e.target.value;
+//   displayAndSaveSettings();
+// });
+
+
 let openSettingBtnElement = document.getElementById("openModalButton");
+openSettingBtnElement.addEventListener('click', function () {
+  openSettingBtnElement.blur(); // 포커스 제거
+});
+
+// 첫 화면에 세팅 띄우기
 openSettingBtnElement.click();
 
 
@@ -621,6 +624,7 @@ function remainingTimePauseFunction(){
   remainingTimePausePlayBtnIcon.classList.remove('fa-pause');
   remainingTimePausePlayBtnIcon.classList.add('fa-play');
   remainingTimeCountDown = false;
+  remainingTimePausePlayBtn.blur(); // 포커스 제거
 }
 
 function remainingTimePlayFunction(){
@@ -628,6 +632,7 @@ function remainingTimePlayFunction(){
     remainingTimePausePlayBtnIcon.classList.remove('fa-play');
     remainingTimePausePlayBtnIcon.classList.add('fa-pause');
     remainingTimeCountDown = true;
+    remainingTimePausePlayBtn.blur(); // 포커스 제거
   } else{
     remainingTimePauseFunction();
   }
@@ -636,15 +641,16 @@ function remainingTimePlayFunction(){
 remainingTimePausePlayBtn.addEventListener('click', function () {
   if (remainingTimePausePlayBtnIcon.classList.contains('fa-play')) {
     remainingTimePlayFunction();
-
   } else {
     remainingTimePauseFunction();
   }
+  remainingTimePausePlayBtn.blur(); // 포커스 제거
 });
 
 let remainingRefreshBtn = document.getElementById('remainingRefreshButton')
 remainingRefreshBtn.addEventListener('click', function(){
   remainingTime = initialRemainingTime *60 * 1000;
+  remainingRefreshBtn.blur(); // 포커스 제거
 })
 
 
@@ -704,6 +710,22 @@ let fastUpdateInterval = setInterval(fastUpdate, fastUpdateTime);
 
 //////////////////////// logs //////////////////////
 const logsList = document.querySelector('.logs-list');
+const deleteCheckbox = document.getElementById('delete-checkbox');
+
+// 로그 삭제 버튼 클릭 시 리스트가 비어있으면 delete 버튼 비활성화
+deleteCheckbox.addEventListener('change', function () {
+  const itemDeleteBtnElements = document.getElementsByClassName('log-item-delete');
+  for (let i = 0; i < itemDeleteBtnElements.length; i++) {
+    itemDeleteBtnElements[i].style.display = this.checked ? 'block' : 'none';
+  }
+  if (logsList.children.length === 0) {
+    deleteCheckbox.checked = false;
+    deleteCheckbox.disabled = true;
+  } else {
+    deleteCheckbox.disabled = false;
+  }
+});
+
 function insertLogItem(item){
   const logItem = document.createElement('div');
   logItem.className = 'log-item';
@@ -749,6 +771,11 @@ function insertLogItem(item){
     );
     if (dataIndex !== -1) {
       recordData.splice(dataIndex, 1);
+      recordDataSetItem();
+    }
+    if (logsList.children.length === 0) {
+      deleteCheckbox.checked = false;
+      deleteCheckbox.disabled = true;
     }
   });
 
@@ -759,8 +786,20 @@ function insertLogItem(item){
   } else {
     logsList.appendChild(logItem);
   }
+  deleteCheckbox.disabled = false;
 }
+
+// 기존 로그 아이템 삽입
 recordData.forEach(insertLogItem);
+
+// 초기 상태 업데이트
+if (logsList.children.length === 0) {
+  deleteCheckbox.disabled = true;
+} else {
+  deleteCheckbox.disabled = false;
+} 
+
+
 
 // delete btn
 let deleteBtnElement = document.getElementById("delete-checkbox");
