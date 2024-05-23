@@ -49,12 +49,12 @@ function changeEffectGray(element) {
 
 
 ///////////////////////////// setting /////////////////////////////
-let initialRemainingTime = JSON.parse(localStorage.getItem("initialRemainingTime")) || 10;
-let offtrackPenalty = JSON.parse(localStorage.getItem("offtrackPenalty") || 2);
-let totalLabs = JSON.parse(localStorage.getItem("totalLabs")) || 1;
+let initialRemainingTime = JSON.parse(localStorage.getItem("initialRemainingTime")) || 5;
+let offtrackPenalty = JSON.parse(localStorage.getItem("offtrackPenalty") || 3);
+let totalLabs = JSON.parse(localStorage.getItem("totalLabs")) || 2;
 let autoStartNextLap = localStorage.getItem("autoStartNextLap") || 'on';
 // let startLineDetection = localStorage.getItem("startLineDetection") || 'off';
-let minimumCompleteInterval = JSON.parse(localStorage.getItem("minimumCompleteInterval")) || 3;
+let minimumCompleteInterval = JSON.parse(localStorage.getItem("minimumCompleteInterval")) || 1;
 
 function displayAndSaveSettings() {
   document.querySelector('#setting-list li:nth-child(1) span').textContent = initialRemainingTime;
@@ -65,10 +65,11 @@ function displayAndSaveSettings() {
   localStorage.setItem("totalLabs", JSON.stringify(totalLabs));
   document.querySelector('#setting-list li:nth-child(4) span').textContent = autoStartNextLap;
   localStorage.setItem("autoStartNextLap", autoStartNextLap); 
-  // document.querySelector('#setting-list li:nth-child(5) span').textContent = startLineDetection;
-  // localStorage.setItem("startLineDetection", startLineDetection);
-  // document.querySelector('#setting-list li:nth-child(6) span').textContent = minimumCompleteInterval;
+  document.querySelector('#setting-list li:nth-child(5) span').textContent = minimumCompleteInterval;
   localStorage.setItem("minimumCompleteInterval", JSON.stringify(minimumCompleteInterval));
+  // document.querySelector('#setting-list li:nth-child(6) span').textContent = startLineDetection;
+  // localStorage.setItem("startLineDetection", startLineDetection);
+
 }
 
 displayAndSaveSettings();
